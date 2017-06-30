@@ -61,7 +61,7 @@ foreach ($applications->features as $application) {
     $date_scraped = date($date_format);
     
     # Retrieve this application
-    $curl = curl_init($application->attributes->LinkAppDetails);
+    $curl = curl_init($info_url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_COOKIEJAR, $cookie_file);
     curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);

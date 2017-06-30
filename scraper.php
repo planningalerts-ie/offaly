@@ -19,7 +19,7 @@ $remote_uri = 'https://services3.arcgis.com/vgpNvkwrqKit2cbA/arcgis/rest/service
               '&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&' .
               'outSR=4326&resultOffset=0&resultRecordCount=500';
 
-$council_eplan_root_uri = 'http://www.eplanning.ie/OffalyCC/';
+$council_eplan_root_uri = 'http://www.offaly.ie/eplan5/';
 $council_comment_url = 'http://www.offaly.ie/eng/Services/Planning/Forms/Submission-or-Observation-Form-REVISED-NOV-2014.pdf';
 
 /*
@@ -54,7 +54,7 @@ $applications = json_decode($json_response);
 foreach ($applications->features as $application) {
     echo 'Found: ' . $application->attributes->ApplicationNumber . "\n";
     $council_reference = trim($application->attributes->ApplicationNumber);
-    $info_url = trim($application->attributes->LinkAppDetails);
+    $info_url = str_replace("http://www.eplanning.ie/OffalyCC/",$council_eplan_root_uri,trim($application->attributes->LinkAppDetails));
     $comment_url = $council_comment_url;
     $lat = trim($application->geometry->y);
     $lng = trim($application->geometry->x);
